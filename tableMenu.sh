@@ -40,12 +40,28 @@ createtb() {
     fi
 }
 
+droptb() {
+    read -p "Enter table name: " name
+    if [ -z $name ] 
+    then
+        echo please enter table name
+    elif [ -f db/$CURRENT_DB/$name ]
+    then
+        rm db/$CURRENT_DB/$name db/$CURRENT_DB/$name.meta
+        echo table deleted successfully
+    else
+        echo table does not exist
+    fi
+}
+
+
+
 select choice in "create table" "list tables" "drop table" "exit"
 do
         case $REPLY in
                 1) createtb;;
-                2) ls db;;
-                3) connectTodb;;
+                2) ls db/$CURRENT_DB | grep -v '\.meta$';;
+                3) droptb;;
                 4) dropdb;;
                 5) exit;;
                 *) echo not a valid option

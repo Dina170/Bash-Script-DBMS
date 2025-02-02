@@ -25,7 +25,7 @@ connectTodb() {
     then
         CURRENT_DB=$name
         echo connected to $name
-        . ./tablesMenu.sh
+        . ./tableMenu.sh
     else
         echo database does not exist
     fi
