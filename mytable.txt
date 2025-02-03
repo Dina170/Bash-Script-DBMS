@@ -1,0 +1,4 @@
+ID|Name|AGE
+2|Dina|23
+3|Hagar|20
+
