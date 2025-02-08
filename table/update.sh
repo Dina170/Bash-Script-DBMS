@@ -5,14 +5,7 @@ if [[ ! -f "db/$CURRENT_DB/$name" ]]; then
     exit 1
 fi
 
-#read -p "Enter Primary Key value to update: " key
-#row=$(grep "^$key|" "db/$CURRENT_DB/$name")
-#if [[ -z "$row" ]]; then
-#    echo "Row not found"
-#    exit 1
-#fi
 
-#echo "Current Data: $row"
 columns=($(sed -n '1s/Columns: //p' db/$CURRENT_DB/$name.meta))
 types=($(sed -n '2s/Types: //p' db/$CURRENT_DB/$name.meta))
 pk=$(sed -n '3s/PrimaryKey: //p' db/$CURRENT_DB/$name.meta)
@@ -20,11 +13,6 @@ pk=$(sed -n '3s/PrimaryKey: //p' db/$CURRENT_DB/$name.meta)
 echo "Columns: ${columns[@]}"
 read -p "Enter column to update: " column_name
 
-#read -p "Enter new data (Name,Age): " new_data
-#if [[ ! "$new_data" =~ "," ]]; then
-#    echo " Please enter data in 'Name,Age' format"
-#    exit 1
-#fi
 
 col_idx=-1
 
@@ -32,7 +20,6 @@ for col in "${!columns[@]}"
 do
     if [[ "${columns[$col]}" == "$column_name" ]]
     then
-    	echo test
     	col_idx=$((col+1))
     	dtype=${types[$col]}
     	break
@@ -54,7 +41,6 @@ then
     return
 fi
 
-#read -r new_name age <<< "$new_data"
 awk -F "|" -v col_idx="$col_idx" -v key="$key" -v value="$new_value" '{
     if ($1 == key) {
         $col_idx=value;
