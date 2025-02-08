@@ -6,6 +6,8 @@ if [[ ! -f "db/$CURRENT_DB/$name" ]]; then
 fi
 
 echo "Table Data:"
-column -t -s "|" "db/$CURRENT_DB/$name"
+cat "db/$CURRENT_DB/$name"
+
+
 
 

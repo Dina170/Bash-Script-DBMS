@@ -1,13 +1,13 @@
 read -p "Enter table name: " name
 if [ -z $name ] 
 then
-echo please enter table name
+    echo please enter table name
 elif [ -f db/$CURRENT_DB/$name ]
 then
-echo table already exists
-elif [[ ! $name =~ ^[a-zA-Z0-9]+$ ]]
+    echo table already exists
+elif [[ ! $name =~ ^[a-zA-Z][a-zA-Z0-9_]+$ ]]
 then
-echo name can not contain special characters
+    echo name can not contain special characters
 else
 columns=()
 types=()

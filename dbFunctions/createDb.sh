@@ -7,7 +7,7 @@ then
 elif [ -d db/$name ]
 then
     echo database already exists
-elif [[ ! $name =~ ^[a-zA-Z0-9]+$ ]]
+elif [[ ! $name =~ ^[a-zA-Z][a-zA-Z0-9_]+$ ]]
 then
     echo name can not contain special characters
 else
