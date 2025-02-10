@@ -2,7 +2,7 @@
 read -p "Enter Table Name: " name
 if [[ ! -f "db/$CURRENT_DB/$name" ]]; then
     echo "Table does not exist"
-    exit 1
+    return
 fi
 
 
@@ -39,6 +39,15 @@ if [[ "$dtype" == "int" && ! "$new_value" =~ ^[0-9]+$ ]]
 then
     echo "Error: value must be an integer!"
     return
+fi
+
+if [[ $col_idx -eq 1 ]]
+then
+    if grep -q "^$new_value|" "db/$CURRENT_DB/$name"
+    then
+        echo "Error: Primary key $new_value already exists"
+        return
+    fi
 fi
 
 awk -F "|" -v col_idx="$col_idx" -v key="$key" -v value="$new_value" '{
