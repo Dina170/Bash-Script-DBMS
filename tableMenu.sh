@@ -6,7 +6,7 @@ do
         case $REPLY in
                 1) . table/createTb.sh;;
                 2) ls db/$CURRENT_DB | grep -v '\.meta$';;
-                3) . table/dropTb;;
+                3) . table/dropTb.sh;;
                 4) . table/insert.sh;;
                 5) . table/select.sh;;
                 6) . table/selectWh.sh;;
